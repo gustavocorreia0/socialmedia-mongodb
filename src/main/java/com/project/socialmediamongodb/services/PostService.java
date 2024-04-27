@@ -21,5 +21,9 @@ public class PostService {
 	public Post findById(String id) {
 		return postRepository.findById(id).get();
 	}
+
+	public List<Post> findByTitle(String title){
+		return postRepository.findByTitleContainingIgnoreCase(title);
+	}
 	
 }
