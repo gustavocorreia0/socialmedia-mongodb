@@ -32,9 +32,9 @@ public class PostResource {
 		
 	}
 	
-	//@GetMapping(value="/titlesearch")
-	//public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text){
-	//	return ResponseEntity.ok().body(postService.findByTitle(URL.decodeParameter(text)));
-	//}
+	@GetMapping(value="/titlesearch")
+	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text){
+		return ResponseEntity.ok().body(postService.findByTitle(URL.decodeParameter(text)));
+	}
 	
 }

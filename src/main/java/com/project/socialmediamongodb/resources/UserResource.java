@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.project.socialmediamongodb.domain.Post;
 import com.project.socialmediamongodb.domain.User;
 import com.project.socialmediamongodb.dto.UserDTO;
+import com.project.socialmediamongodb.resources.util.URL;
 import com.project.socialmediamongodb.services.UserService;
 
 @RestController
@@ -64,6 +66,11 @@ public class UserResource {
 	@GetMapping(value = "/{id}/posts")
 	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
 		return ResponseEntity.ok().body(userService.findById(id).getPosts());
+	}
+	
+	@GetMapping(value = "/namesearch")
+	public ResponseEntity<List<User>> findByFirstname(@RequestParam(value="name") String name){
+		return ResponseEntity.ok().body(userService.findByFirstname(URL.decodeParameter(name)));
 	}
 	
 }
