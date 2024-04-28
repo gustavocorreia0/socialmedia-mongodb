@@ -12,6 +12,10 @@ public class URL {
 			return "";
 		}
 	}
+<<<<<<< HEAD
 
 		
+=======
+	
+>>>>>>> aeae8b27fa1a0968f4e0dd65227422633880e50d
 }
