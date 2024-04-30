@@ -1,5 +1,6 @@
 package com.project.socialmediamongodb.resources;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,23 @@ public class PostResource {
 	}
 	
 	@GetMapping(value="/titlesearch")
-<<<<<<< HEAD
-	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text){
-		return ResponseEntity.ok().body(postService.findByTitle(URL.decodeParameter(text)));
-=======
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="text") String text){
 		return ResponseEntity.ok().body(postService.findByTitle(URL.decodeParameter(text)));
+	}
+	
+
+	@GetMapping(value="/fullsearch")
+	public ResponseEntity<List<Post>> fullSearch(
+			@RequestParam(value="text") String text,
+			@RequestParam(value="minDate") String minDate,
+			@RequestParam(value="maxDate") String maxDate
+			){
 		
->>>>>>> aeae8b27fa1a0968f4e0dd65227422633880e50d
+		text = URL.decodeParameter(text);
+		Date minimumDate = URL.convertDate(minDate, new Date(0L));
+		Date maximumDate = URL.convertDate(minDate, new Date());
+		
+		return ResponseEntity.ok().body(postService.fullsearch(text, minimumDate, maximumDate));
 	}
 	
 }

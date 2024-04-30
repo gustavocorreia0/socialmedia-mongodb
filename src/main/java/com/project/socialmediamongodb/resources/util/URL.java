@@ -2,6 +2,10 @@ package com.project.socialmediamongodb.resources.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class URL {
 
@@ -12,10 +16,14 @@ public class URL {
 			return "";
 		}
 	}
-<<<<<<< HEAD
-
-		
-=======
 	
->>>>>>> aeae8b27fa1a0968f4e0dd65227422633880e50d
+	public static Date convertDate(String data, Date defaultValue){
+		SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd");
+		sdt.setTimeZone(TimeZone.getTimeZone("GMT"));
+		try {
+			return sdt.parse(data);
+		} catch (ParseException e) {
+			return defaultValue;
+		}
+	}
 }

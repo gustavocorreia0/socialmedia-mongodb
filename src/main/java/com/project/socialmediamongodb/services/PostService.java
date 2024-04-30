@@ -1,5 +1,6 @@
 package com.project.socialmediamongodb.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class PostService {
 	public List<Post> findByTitle(String title){
 		return postRepository.findByTitleContainingIgnoreCase(title);
 	}
-	
-	public List<Post> findByTitle(String text){
-		return postRepository.findByTitleContainingIgnoreCase(text);
+	public List<Post> fullsearch(String text, Date minDate, Date maxDate){
+		maxDate = new Date(maxDate.getTime() + 24*60*60*1000);
+		return postRepository.fullsearch(text, minDate, maxDate);
 	}
 	
-}
+} 
